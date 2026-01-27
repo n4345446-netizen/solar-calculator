@@ -5,15 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Solar Calculator</title>
   <link rel="stylesheet" href="style.css">
-
-  <!-- Font Awesome for professional icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-yHkeVhJZBqY4i2BZ6jExV3n1cKqI0K1jM+W3WjcyQfDpzLt45sWRwG3EdH1T9QELP3K+2Zq9/pJ1r0O2s5T9CQ=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
 </head>
 <body>
 
@@ -25,9 +16,27 @@
 
 <!-- SIDE MENU -->
 <nav id="sideMenu">
-  <a href="#"><i class="fas fa-home"></i> Home</a>
-  <a href="#"><i class="fas fa-calculator"></i> Calculator</a>
-  <a href="#"><i class="fas fa-info-circle"></i> About</a>
+  <a href="#">
+    <!-- Home SVG icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFD700" viewBox="0 0 16 16">
+      <path d="M8 3.293l6 6V15h-4v-4H6v4H2v-5.707l6-6z"/>
+    </svg>
+    Home
+  </a>
+  <a href="#">
+    <!-- Calculator SVG icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFD700" viewBox="0 0 16 16">
+      <path d="M2 2h12v12H2V2zm2 2v2h2V4H4zm4 0v2h2V4H8zm4 0v2h2V4h-2zm-8 4v2h2V8H4zm4 0v2h2V8H8zm4 0v2h2V8h-2zm-8 4v2h2v-2H4zm4 0v2h2v-2H8zm4 0v2h2v-2h-2z"/>
+    </svg>
+    Calculator
+  </a>
+  <a href="#">
+    <!-- Info SVG icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFD700" viewBox="0 0 16 16">
+      <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .875-.252 1.02-.598l.088-.416c.066-.314.035-.463-.21-.536l-.451-.083.082-.381 1.969-.287.082-.381-.45-.083c-.294-.07-.352-.176-.288-.469l.738-3.468c.194-.897-.105-1.319-.808-1.319-.545 0-.875.252-1.02.598l-.088.416c-.066.314-.035.463.21.536l.451.083-.082.381z"/>
+    </svg>
+    About
+  </a>
 </nav>
 
 <!-- MAIN CONTENT -->
@@ -58,7 +67,6 @@
   </section>
 </main>
 
-<!-- JS -->
 <script src="script.js"></script>
 </body>
 </html>
