@@ -17,6 +17,10 @@ nav a {
   font-size:18px;
 }
 
+nav a i {
+  margin-right:10px; /* space between icon and text */
+}
+
 nav a::before {
   margin-right:10px; /* space between icon and text */
 }
