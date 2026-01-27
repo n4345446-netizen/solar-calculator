@@ -12,13 +12,15 @@ nav { position:fixed; top:0; left:-220px; width:200px; height:100%; background:#
 nav a { display:block; padding:15px; color:#FFD700; text-decoration:none; }
 nav a:hover { background:#444; }
 
-/* Main */
+/* Main content */
 main { padding:20px; }
+
+/* Hero section */
 .hero { background:#111; padding:30px; border-radius:8px; margin-bottom:30px; text-align:center; }
 .hero h2 { margin-bottom:15px; color:#FFD700; }
 .hero p { color:#FFD700; margin-bottom:15px; }
 .whatsapp-btn { display:inline-block; margin-top:15px; padding:12px 18px; background:#25d366; color:white; text-decoration:none; border-radius:5px; font-weight:bold; }
 
-/* Cards */
+/* Cards section */
 .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:15px; }
 .card { background:#111; padding:20px; border-radius:8px; color:#FFD700; }
