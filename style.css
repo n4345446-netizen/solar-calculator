@@ -10,15 +10,17 @@ header { display:flex; align-items:center; padding:15px; background:#111; color:
 /* Side menu */
 nav { position:fixed; top:0; left:-220px; width:200px; height:100%; background:#222; padding-top:60px; transition:0.3s; }
 nav a {
-  display:block;
-  padding:15px;
-  color:#FFD700; /* gold links */
-  text-decoration:none;
-  font-size:18px;
+  display: block;
+  padding: 20px 15px;
+  color: #FFD700; /* gold */
+  text-decoration: none;
+  font-size: 20px; /* slightly bigger */
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 nav a i {
-  margin-right:10px; /* space between icon and text */
+  margin-right: 10px; /* space between icon and text */
 }
 
 nav a::before {
