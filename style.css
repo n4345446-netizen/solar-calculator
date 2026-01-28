@@ -61,6 +61,17 @@ nav a:hover {
   margin-top: 5px;
 }
 
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.checkbox-container label {
+  margin-left: 8px;
+  margin-top: 0;
+}
+
 .calculator button {
   width: 100%;
   padding: 12px;
