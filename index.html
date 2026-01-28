@@ -66,7 +66,7 @@
       border-radius: 5px;
     }
 
-    /* Calculator */
+    /* Calculator styles */
     #calculator div {
       margin-bottom: 12px;
     }
@@ -189,6 +189,7 @@
   </div>
 
   <button onclick="calculate()">Calculate Load</button>
+  <button onclick="sendToWhatsApp()">Send to WhatsApp</button>
 
   <div id="result">Total Load: 0 kVA</div>
 </section>
@@ -213,17 +214,54 @@
 
 <script>
   function calculate() {
-    const fan = document.getElementById("fan").value * 75;
-    const ac = document.getElementById("ac").value * 1500;
-    const light = document.getElementById("light").value * 20;
-    const tv = document.getElementById("tv").value * 150;
-    const laptop = document.getElementById("laptop").value * 65;
+    const fanW = 75;
+    const acW = 1500;
+    const lightW = 20;
+    const tvW = 150;
+    const laptopW = 65;
 
-    let totalWatts = fan + ac + light + tv + laptop;
-    let kva = (totalWatts / 1000).toFixed(2);
+    const fan = Number(document.getElementById("fan").value);
+    const ac = Number(document.getElementById("ac").value);
+    const light = Number(document.getElementById("light").value);
+    const tv = Number(document.getElementById("tv").value);
+    const laptop = Number(document.getElementById("laptop").value);
 
-    document.getElementById("result").innerText =
-      "Total Load: " + kva + " kVA";
+    const hours = Number(document.getElementById("hours").value);
+    const future = document.getElementById("future").checked;
+
+    let totalWatts =
+      fan * fanW +
+      ac * acW +
+      light * lightW +
+      tv * tvW +
+      laptop * laptopW;
+
+    if (future) {
+      totalWatts *= 1.25;
+    }
+
+    const kva = (totalWatts / 1000).toFixed(2);
+
+    document.getElementById("result").innerHTML =
+      `Total Load: <b>${kva} kVA</b><br>
+       Backup Time: ${hours} hours`;
+
+    const message =
+      `Hello, I used your Solar Calculator.%0A` +
+      `Total Load: ${kva} kVA%0A` +
+      `Backup Time: ${hours} hours%0A` +
+      `Future Expansion: ${future ? "Yes" : "No"}`;
+
+    window.whatsappLink =
+      "https://wa.me/2347059640476?text=" + message;
+  }
+
+  function sendToWhatsApp() {
+    if (!window.whatsappLink) {
+      alert("Please calculate load first.");
+      return;
+    }
+    window.open(window.whatsappLink, "_blank");
   }
 </script>
 
