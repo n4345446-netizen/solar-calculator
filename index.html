@@ -2,260 +2,97 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Solar Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #000;
-      color: #FFD700;
-    }
-
-    header {
-      background: #000;
-      padding: 20px;
-      text-align: center;
-      border-bottom: 2px solid #FFD700;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 26px;
-    }
-
-    nav {
-      background: #111;
-      padding: 10px;
-      text-align: center;
-    }
-
-    nav a {
-      color: #FFD700;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    section {
-      padding: 25px 20px;
-    }
-
-    h2 {
-      border-bottom: 1px solid #FFD700;
-      padding-bottom: 6px;
-    }
-
-    .hero {
-      text-align: center;
-    }
-
-    .hero p {
-      color: #eee;
-      max-width: 600px;
-      margin: 10px auto;
-    }
-
-    .cta {
-      display: inline-block;
-      margin-top: 18px;
-      padding: 14px 26px;
-      background: #FFD700;
-      color: #000;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 30px;
-    }
-
-    /* Calculator */
-    #calculator div {
-      margin-bottom: 14px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    input[type="number"] {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-    }
-
-    input[type="checkbox"] {
-      transform: scale(1.2);
-      margin-right: 6px;
-    }
-
-    button {
-      width: 100%;
-      padding: 14px;
-      background: #FFD700;
-      color: #000;
-      font-size: 18px;
-      font-weight: bold;
-      border: none;
-      border-radius: 30px;
-      margin-top: 10px;
-    }
-
-    #result {
-      margin-top: 15px;
-      font-size: 20px;
-    }
-
-    footer {
-      background: #111;
-      text-align: center;
-      padding: 18px;
-      margin-top: 30px;
-      font-size: 14px;
-    }
-
-    /* Floating WhatsApp */
-    .whatsapp {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #FFD700;
-      color: #000;
-      padding: 14px 20px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
+<!-- Header -->
 <header>
-  <h1>Solar Calculator</h1>
+  <div class="logo">
+    ☀️ Solar Calculator
+  </div>
 </header>
 
+<!-- Navigation -->
 <nav>
-  <a href="#home">Home</a>
-  <a href="#calculator">Calculator</a>
-  <a href="#about">About</a>
+  <a href="#home">
+    <span class="icon">🏠</span> Home
+  </a>
+  <a href="#calculator">
+    <span class="icon">🧮</span> Calculator
+  </a>
+  <a href="#about">
+    <span class="icon">ℹ️</span> About
+  </a>
 </nav>
 
-<section id="home" class="hero">
-  <h2>Know Your Solar Size Before You Buy</h2>
+<!-- Home -->
+<section id="home" class="section">
+  <h1>Smart Solar Load Calculator</h1>
   <p>
-    Use our smart solar calculator to estimate your power needs
-    and get professional guidance instantly.
+    Calculate your home or business power needs in seconds and get accurate solar recommendations.
   </p>
-  <a href="https://wa.me/2347059640476" class="cta">
-    Chat on WhatsApp
-  </a>
 </section>
 
-<section id="calculator">
+<!-- Calculator -->
+<section id="calculator" class="section dark">
   <h2>Solar Load Calculator</h2>
 
-  <div>
-    <label>Fans</label>
-    <input type="number" id="fan" value="0">
-  </div>
+  <div class="calculator">
 
-  <div>
-    <label>Air Conditioners</label>
-    <input type="number" id="ac" value="0">
-  </div>
+    <label>Number of Fans</label>
+    <input type="number" id="fans" value="0">
 
-  <div>
-    <label>Lights</label>
-    <input type="number" id="light" value="0">
-  </div>
+    <label>Number of ACs</label>
+    <input type="number" id="acs" value="0">
 
-  <div>
-    <label>Television</label>
-    <input type="number" id="tv" value="0">
-  </div>
+    <label>Number of Lights</label>
+    <input type="number" id="lights" value="0">
 
-  <div>
+    <label>Phones</label>
+    <input type="number" id="phones" value="0">
+
     <label>Laptops</label>
-    <input type="number" id="laptop" value="0">
-  </div>
+    <input type="number" id="laptops" value="0">
 
-  <div>
     <label>Backup Hours</label>
-    <input type="number" id="hours" value="0">
-  </div>
+    <input type="number" id="hours" value="4">
 
-  <div>
     <label>
-      <input type="checkbox" id="future">
-      Future Expansion
+      <input type="checkbox" id="future"> Future Expansion
     </label>
+
+    <button onclick="calculateLoad()">Calculate Load</button>
+
+    <div id="result"></div>
+
+    <button id="pricingBtn" onclick="sendToWhatsApp()" style="display:none;">
+      Pricing
+    </button>
+
   </div>
-
-  <button onclick="calculate()">Calculate Load</button>
-  <button onclick="sendToWhatsApp()">Send Result to WhatsApp</button>
-
-  <div id="result">Total Load: 0 kVA</div>
 </section>
 
-<section id="about">
-  <h2>Contact & About</h2>
+<!-- About -->
+<section id="about" class="section">
+  <h2>About Us</h2>
   <p>
-    We provide professional solar sales, installation,
-    and maintenance services across Nigeria.
+    We are a Nigeria-based solar solutions company specializing in
+    sales, installation, and maintenance of solar systems, street lights,
+    borehole solar solutions, and complete renewable energy setups.
   </p>
-
-  <p>
-    📞 <strong>Calls only:</strong> 07049955504
-  </p>
-
-  <a href="https://wa.me/2347059640476" class="cta">
-    WhatsApp Us
-  </a>
 </section>
 
-<footer>
-  © 2026 Solar Calculator · Nigeria
-</footer>
-
-<a href="https://wa.me/2347059640476" class="whatsapp">
-  WhatsApp
+<!-- Floating WhatsApp -->
+<a class="whatsapp-float"
+   href="https://wa.me/2347059640476"
+   target="_blank">
+  💬
 </a>
 
-<script>
-  function calculate() {
-    const fanW = 75, acW = 1500, lightW = 20, tvW = 150, laptopW = 65;
-
-    const fan = +fan.value;
-    const ac = +ac.value;
-    const light = +light.value;
-    const tv = +tv.value;
-    const laptop = +laptop.value;
-    const hours = +hours.value;
-    const future = future.checked;
-
-    let totalWatts =
-      fan*fanW + ac*acW + light*lightW + tv*tvW + laptop*laptopW;
-
-    if (future) totalWatts *= 1.25;
-
-    const kva = (totalWatts / 1000).toFixed(2);
-
-    result.innerHTML =
-      `Total Load: <b>${kva} kVA</b><br>Backup Time: ${hours} hours`;
-
-    window.whatsappLink =
-      `https://wa.me/2347059640476?text=Hello, I used your Solar Calculator.%0ATotal Load: ${kva} kVA%0ABackup Time: ${hours} hours%0AFuture Expansion: ${future ? "Yes" : "No"}`;
-  }
-
-  function sendToWhatsApp() {
-    if (!window.whatsappLink) {
-      alert("Please calculate load first.");
-      return;
-    }
-    window.open(window.whatsappLink, "_blank");
-  }
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
