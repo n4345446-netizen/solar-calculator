@@ -124,20 +124,23 @@ nav a:hover {
   text-align: center;
 }
 
+/* Fixed WhatsApp button with logo */
 .whatsapp-float {
   position: fixed;
   bottom: 25px;
   right: 25px;
   background: #25D366;
   color: white;
-  padding: 18px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  font-size: 28px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  font-size: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   transition: transform 0.3s;
+  text-decoration: none;
 }
 
 .whatsapp-float:hover {
