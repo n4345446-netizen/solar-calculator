@@ -1,72 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Solar Calculator</title>
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #000;
+      color: #FFD700;
+    }
+
+    header {
+      background: #000;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 2px solid #FFD700;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 26px;
+    }
+
+    nav {
+      background: #111;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav a {
+      color: #FFD700;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    h2 {
+      border-bottom: 1px solid #FFD700;
+      padding-bottom: 5px;
+    }
+
+    .hero {
+      text-align: center;
+    }
+
+    .hero p {
+      color: #eee;
+    }
+
+    .cta {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 20px;
+      background: #FFD700;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    /* Calculator */
+    #calculator div {
+      margin-bottom: 12px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    input[type="checkbox"] {
+      transform: scale(1.2);
+      margin-right: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #FFD700;
+      color: #000;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    #result {
+      margin-top: 15px;
+      font-size: 20px;
+    }
+
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+      font-size: 14px;
+    }
+
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #FFD700;
+      color: #000;
+      padding: 12px 18px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- HEADER -->
 <header>
-  <div class="menu-btn" onclick="toggleMenu()">☰</div>
   <h1>Solar Calculator</h1>
 </header>
 
-<!-- SIDE MENU -->
-<nav id="sideMenu">
-  <a href="#">
-    <!-- Home SVG icon -->
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFD700" viewBox="0 0 16 16">
-      <path d="M8 3.293l6 6V15h-4v-4H6v4H2v-5.707l6-6z"/>
-    </svg>
-    Home
-  </a>
-  <a href="#">
-    <!-- Calculator SVG icon -->
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFD700" viewBox="0 0 16 16">
-      <path d="M2 2h12v12H2V2zm2 2v2h2V4H4zm4 0v2h2V4H8zm4 0v2h2V4h-2zm-8 4v2h2V8H4zm4 0v2h2V8H8zm4 0v2h2V8h-2zm-8 4v2h2v-2H4zm4 0v2h2v-2H8zm4 0v2h2v-2h-2z"/>
-    </svg>
-    Calculator
-  </a>
-  <a href="#">
-    <!-- Info SVG icon -->
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFD700" viewBox="0 0 16 16">
-      <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .875-.252 1.02-.598l.088-.416c.066-.314.035-.463-.21-.536l-.451-.083.082-.381 1.969-.287.082-.381-.45-.083c-.294-.07-.352-.176-.288-.469l.738-3.468c.194-.897-.105-1.319-.808-1.319-.545 0-.875.252-1.02.598l-.088.416c-.066.314-.035.463.21.536l.451.083-.082.381z"/>
-    </svg>
-    About
-  </a>
+<nav>
+  <a href="#home">Home</a>
+  <a href="#calculator">Calculator</a>
+  <a href="#about">About</a>
 </nav>
 
-<!-- MAIN CONTENT -->
-<main>
-  <!-- Hero Section -->
-  <section class="hero">
-    <h2>Reliable Solar & Smart Energy Solutions</h2>
-    <p>We provide clean, affordable, and professional solar installations across Nigeria.</p>
-    <a class="whatsapp-btn" href="https://wa.me/2347059640476" target="_blank">
-      Chat on WhatsApp: +234 705 964 0476
-    </a>
-  </section>
+<section id="home" class="hero">
+  <h2>Smart Solar Solutions</h2>
+  <p>
+    We provide solar sales, installation, and maintenance across Nigeria.
+  </p>
+  <a href="https://wa.me/2347059640476" class="cta">
+    WhatsApp: +234 705 964 0476
+  </a>
+</section>
 
-  <!-- Cards Section -->
-  <section class="cards">
-    <div class="card">
-      <h3>Solar Installation</h3>
-      <p>Homes, offices, and commercial buildings.</p>
-    </div>
-    <div class="card">
-      <h3>Inverters & Batteries</h3>
-      <p>Reliable backup power solutions.</p>
-    </div>
-    <div class="card">
-      <h3>CCTV & Smart Security</h3>
-      <p>Modern surveillance and access control.</p>
-    </div>
-  </section>
-</main>
+<section id="calculator">
+  <h2>Solar Load Calculator</h2>
 
-<script src="script.js"></script>
+  <div>
+    <label>Fans</label>
+    <input type="number" id="fan" value="0">
+  </div>
+
+  <div>
+    <label>Air Conditioners</label>
+    <input type="number" id="ac" value="0">
+  </div>
+
+  <div>
+    <label>Lights</label>
+    <input type="number" id="light" value="0">
+  </div>
+
+  <div>
+    <label>Television</label>
+    <input type="number" id="tv" value="0">
+  </div>
+
+  <div>
+    <label>Laptops</label>
+    <input type="number" id="laptop" value="0">
+  </div>
+
+  <div>
+    <label>Backup Hours</label>
+    <input type="number" id="hours" value="0">
+  </div>
+
+  <div>
+    <label>
+      <input type="checkbox" id="future">
+      Future Expansion
+    </label>
+  </div>
+
+  <button onclick="calculate()">Calculate Load</button>
+
+  <div id="result">Total Load: 0 kVA</div>
+</section>
+
+<section id="about">
+  <h2>About Us</h2>
+  <p>
+    We are a Nigerian solar company focused on reliable and scalable energy
+    solutions for homes and businesses.
+  </p>
+  <p>
+    📞 Calls only: 07049955504 <br>
+    💬 WhatsApp: +234 705 964 0476
+  </p>
+</section>
+
+<footer>
+  © 2026 Solar Calculator. Nigeria.
+</footer>
+
+<a href="https://wa.me/2347059640476" class="whatsapp">WhatsApp</a>
+
+<script>
+  function calculate() {
+    const fan = document.getElementById("fan").value * 75;
+    const ac = document.getElementById("ac").value * 1500;
+    const light = document.getElementById("light").value * 20;
+    const tv = document.getElementById("tv").value * 150;
+    const laptop = document.getElementById("laptop").value * 65;
+
+    let totalWatts = fan + ac + light + tv + laptop;
+    let kva = (totalWatts / 1000).toFixed(2);
+
+    document.getElementById("result").innerText =
+      "Total Load: " + kva + " kVA";
+  }
+</script>
+
 </body>
 </html>
