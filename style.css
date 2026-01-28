@@ -61,10 +61,14 @@ nav a:hover {
   margin-top: 5px;
 }
 
+/* Fixed checkbox alignment */
 .checkbox-container {
   display: flex;
   align-items: center;
   margin-top: 15px;
+  justify-content: flex-start;
+  gap: 8px; /* small space between label and checkbox */
+  white-space: nowrap; /* prevent wrapping */
 }
 
 .checkbox-container input[type="checkbox"] {
@@ -72,9 +76,8 @@ nav a:hover {
 }
 
 .checkbox-container label {
-  margin-left: 8px;
-  margin-top: 0;
   cursor: pointer;
+  margin: 0;
 }
 
 .calculator button {
