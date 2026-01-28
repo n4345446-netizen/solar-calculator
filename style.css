@@ -89,14 +89,12 @@ nav a:hover {
 }
 
 .checkbox-container input[type="checkbox"] {
-  margin: 0;
   width: 18px;
   height: 18px;
 }
 
 .checkbox-container label {
   cursor: pointer;
-  margin: 0;
   font-weight: bold;
 }
 
@@ -124,25 +122,24 @@ nav a:hover {
   text-align: center;
 }
 
-/* Fixed WhatsApp button with logo */
-.whatsapp-float {
+/* Floating WhatsApp rectangular button */
+.whatsapp-rect {
   position: fixed;
   bottom: 25px;
   right: 25px;
-  background: #25D366;
+  background: linear-gradient(45deg, #25D366, #1EBEA5);
   color: white;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  font-size: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  transition: transform 0.3s;
+  padding: 12px 25px;
+  border-radius: 30px; /* oval shape */
+  font-size: 18px;
+  font-weight: bold;
   text-decoration: none;
+  border: 2px solid white; /* thin white border */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s, background 0.5s;
 }
 
-.whatsapp-float:hover {
+.whatsapp-rect:hover {
   transform: scale(1.1);
+  background: linear-gradient(45deg, #1EBEA5, #25D366); /* invert gradient on hover */
 }
