@@ -1,17 +1,91 @@
-nav a {
-  display: block;
-  padding: 20px 15px;
-  color: #FFD700;
-  text-decoration: none;
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: 1px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
-nav a i {
-  margin-right: 10px;
+body {
+  background: #111;
+  color: #eee;
+}
+
+header {
+  background: #000;
+  color: #FFD700;
+  padding: 15px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  background: #1a1a1a;
+}
+
+nav a {
+  color: #FFD700;
+  padding: 15px 20px;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 nav a:hover {
   background: #333;
+}
+
+.section {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.dark {
+  background: #000;
+}
+
+.calculator {
+  max-width: 400px;
+  margin: auto;
+  text-align: left;
+}
+
+.calculator label {
+  display: block;
+  margin-top: 15px;
+}
+
+.calculator input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+.calculator button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background: #FFD700;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#result {
+  margin-top: 15px;
+  font-size: 18px;
+  color: #FFD700;
+  text-align: center;
+}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 22px;
 }
