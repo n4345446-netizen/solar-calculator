@@ -39,12 +39,12 @@
     }
 
     section {
-      padding: 20px;
+      padding: 25px 20px;
     }
 
     h2 {
       border-bottom: 1px solid #FFD700;
-      padding-bottom: 5px;
+      padding-bottom: 6px;
     }
 
     .hero {
@@ -53,49 +53,51 @@
 
     .hero p {
       color: #eee;
+      max-width: 600px;
+      margin: 10px auto;
     }
 
     .cta {
       display: inline-block;
-      margin-top: 15px;
-      padding: 12px 20px;
+      margin-top: 18px;
+      padding: 14px 26px;
       background: #FFD700;
       color: #000;
       text-decoration: none;
       font-weight: bold;
-      border-radius: 5px;
+      border-radius: 30px;
     }
 
-    /* Calculator styles */
+    /* Calculator */
     #calculator div {
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     label {
       display: block;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
 
     input[type="number"] {
       width: 100%;
-      padding: 8px;
+      padding: 10px;
       font-size: 16px;
     }
 
     input[type="checkbox"] {
       transform: scale(1.2);
-      margin-right: 5px;
+      margin-right: 6px;
     }
 
     button {
       width: 100%;
-      padding: 12px;
+      padding: 14px;
       background: #FFD700;
       color: #000;
       font-size: 18px;
       font-weight: bold;
       border: none;
-      border-radius: 5px;
+      border-radius: 30px;
       margin-top: 10px;
     }
 
@@ -107,19 +109,20 @@
     footer {
       background: #111;
       text-align: center;
-      padding: 15px;
+      padding: 18px;
       margin-top: 30px;
       font-size: 14px;
     }
 
+    /* Floating WhatsApp */
     .whatsapp {
       position: fixed;
       bottom: 20px;
       right: 20px;
       background: #FFD700;
       color: #000;
-      padding: 12px 18px;
-      border-radius: 30px;
+      padding: 14px 20px;
+      border-radius: 50px;
       text-decoration: none;
       font-weight: bold;
     }
@@ -139,12 +142,13 @@
 </nav>
 
 <section id="home" class="hero">
-  <h2>Smart Solar Solutions</h2>
+  <h2>Know Your Solar Size Before You Buy</h2>
   <p>
-    We provide solar sales, installation, and maintenance across Nigeria.
+    Use our smart solar calculator to estimate your power needs
+    and get professional guidance instantly.
   </p>
   <a href="https://wa.me/2347059640476" class="cta">
-    WhatsApp: +234 705 964 0476
+    Chat on WhatsApp
   </a>
 </section>
 
@@ -189,71 +193,59 @@
   </div>
 
   <button onclick="calculate()">Calculate Load</button>
-  <button onclick="sendToWhatsApp()">Send to WhatsApp</button>
+  <button onclick="sendToWhatsApp()">Send Result to WhatsApp</button>
 
   <div id="result">Total Load: 0 kVA</div>
 </section>
 
 <section id="about">
-  <h2>About Us</h2>
+  <h2>Contact & About</h2>
   <p>
-    We are a Nigerian solar company focused on reliable and scalable energy
-    solutions for homes and businesses.
+    We provide professional solar sales, installation,
+    and maintenance services across Nigeria.
   </p>
+
   <p>
-    📞 Calls only: 07049955504 <br>
-    💬 WhatsApp: +234 705 964 0476
+    📞 <strong>Calls only:</strong> 07049955504
   </p>
+
+  <a href="https://wa.me/2347059640476" class="cta">
+    WhatsApp Us
+  </a>
 </section>
 
 <footer>
-  © 2026 Solar Calculator. Nigeria.
+  © 2026 Solar Calculator · Nigeria
 </footer>
 
-<a href="https://wa.me/2347059640476" class="whatsapp">WhatsApp</a>
+<a href="https://wa.me/2347059640476" class="whatsapp">
+  WhatsApp
+</a>
 
 <script>
   function calculate() {
-    const fanW = 75;
-    const acW = 1500;
-    const lightW = 20;
-    const tvW = 150;
-    const laptopW = 65;
+    const fanW = 75, acW = 1500, lightW = 20, tvW = 150, laptopW = 65;
 
-    const fan = Number(document.getElementById("fan").value);
-    const ac = Number(document.getElementById("ac").value);
-    const light = Number(document.getElementById("light").value);
-    const tv = Number(document.getElementById("tv").value);
-    const laptop = Number(document.getElementById("laptop").value);
-
-    const hours = Number(document.getElementById("hours").value);
-    const future = document.getElementById("future").checked;
+    const fan = +fan.value;
+    const ac = +ac.value;
+    const light = +light.value;
+    const tv = +tv.value;
+    const laptop = +laptop.value;
+    const hours = +hours.value;
+    const future = future.checked;
 
     let totalWatts =
-      fan * fanW +
-      ac * acW +
-      light * lightW +
-      tv * tvW +
-      laptop * laptopW;
+      fan*fanW + ac*acW + light*lightW + tv*tvW + laptop*laptopW;
 
-    if (future) {
-      totalWatts *= 1.25;
-    }
+    if (future) totalWatts *= 1.25;
 
     const kva = (totalWatts / 1000).toFixed(2);
 
-    document.getElementById("result").innerHTML =
-      `Total Load: <b>${kva} kVA</b><br>
-       Backup Time: ${hours} hours`;
-
-    const message =
-      `Hello, I used your Solar Calculator.%0A` +
-      `Total Load: ${kva} kVA%0A` +
-      `Backup Time: ${hours} hours%0A` +
-      `Future Expansion: ${future ? "Yes" : "No"}`;
+    result.innerHTML =
+      `Total Load: <b>${kva} kVA</b><br>Backup Time: ${hours} hours`;
 
     window.whatsappLink =
-      "https://wa.me/2347059640476?text=" + message;
+      `https://wa.me/2347059640476?text=Hello, I used your Solar Calculator.%0ATotal Load: ${kva} kVA%0ABackup Time: ${hours} hours%0AFuture Expansion: ${future ? "Yes" : "No"}`;
   }
 
   function sendToWhatsApp() {
