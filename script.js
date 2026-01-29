@@ -1,5 +1,5 @@
-let lastKVA = 0;
-let backupHours = 0;
+let lastKVA = ;
+let backupHours = ;
 let future = false;
 
 function calculateLoad() {
@@ -8,11 +8,13 @@ function calculateLoad() {
   const lights = Number(document.getElementById("lights").value) * 20;
   const phones = Number(document.getElementById("phones").value) * 10;
   const laptops = Number(document.getElementById("laptops").value) * 65;
+  const tv = Number(document.getElementById("tv").value) * 100;
+  const fridge = Number(document.getElementById("fridge").value) * 200;
 
   backupHours = document.getElementById("hours").value;
   future = document.getElementById("future").checked;
 
-  const totalWatts = fans + acs + lights + phones + laptops;
+  const totalWatts = fans + acs + lights + phones + laptops + tv + fridge;
   lastKVA = (totalWatts / 1000).toFixed(2);
 
   document.getElementById("result").innerHTML =
