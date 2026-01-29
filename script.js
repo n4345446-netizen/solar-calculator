@@ -1,17 +1,18 @@
-let lastKVA = ;
-let backupHours = ;
+let lastKVA = 0;
+let backupHours = 0;
 let future = false;
 
 function calculateLoad() {
-  const fans = Number(document.getElementById("fans").value) * 75;
-  const acs = Number(document.getElementById("acs").value) * 1500;
-  const lights = Number(document.getElementById("lights").value) * 20;
-  const phones = Number(document.getElementById("phones").value) * 10;
-  const laptops = Number(document.getElementById("laptops").value) * 65;
-  const tv = Number(document.getElementById("tv").value) * 100;
-  const fridge = Number(document.getElementById("fridge").value) * 200;
+  // Get values, treat "o" or empty as 0
+  const fans = (Number(document.getElementById("fans").value) || 0) * 75;
+  const acs = (Number(document.getElementById("acs").value) || 0) * 1500;
+  const lights = (Number(document.getElementById("lights").value) || 0) * 20;
+  const phones = (Number(document.getElementById("phones").value) || 0) * 10;
+  const laptops = (Number(document.getElementById("laptops").value) || 0) * 65;
+  const tv = (Number(document.getElementById("tv").value) || 0) * 100;
+  const fridge = (Number(document.getElementById("fridge").value) || 0) * 200;
 
-  backupHours = document.getElementById("hours").value;
+  backupHours = Number(document.getElementById("hours").value) || 0;
   future = document.getElementById("future").checked;
 
   const totalWatts = fans + acs + lights + phones + laptops + tv + fridge;
