@@ -54,9 +54,9 @@ nav a:hover { transform:scale(1.2); color:#FFA500; }
 .calculator button:hover { transform: scale(1.05); }
 #result { margin-top:20px; font-size:20px; color:#FFD700; text-align:center; }
 
-/* WhatsApp Floating Button */
-.whatsapp-rect { position:fixed; bottom:25px; right:25px; background:linear-gradient(45deg,#25D366,#1EBEA5); color:white; padding:12px 25px; border-radius:30px; font-size:18px; font-weight:bold; text-decoration:none; border:2px solid white; box-shadow:0 5px 15px rgba(0,0,0,0.3); transition: transform 0.3s, background 0.5s; }
-.whatsapp-rect:hover { transform:scale(1.1); background:linear-gradient(45deg,#1EBEA5,#25D366); }
+/* Floating WhatsApp icon button */
+.whatsapp-circle { position:fixed; bottom:25px; right:25px; background:#25D366; color:white; width:60px; height:60px; border-radius:50%; display:flex; justify-content:center; align-items:center; font-size:30px; box-shadow:0 5px 15px rgba(0,0,0,0.3); transition: transform 0.3s, background 0.5s; z-index:100; }
+.whatsapp-circle:hover { transform:scale(1.2); background:#1EBEA5; }
 
 /* Big bottom image */
 .bottom-image { display:flex; justify-content:center; margin-top:30px; overflow:hidden; }
@@ -122,9 +122,8 @@ nav a:hover { transform:scale(1.2); color:#FFA500; }
     
     <div class="input-card"><label>Backup Hours</label><input type="number" id="hours" placeholder="0"></div>
     <div class="checkbox-container"><input type="checkbox" id="future"><label for="future">Future Expansion</label></div>
-    <button onclick="calculateLoad()">Calculate Load</button>
     <div id="result"></div>
-    <button id="pricingBtn" onclick="sendToWhatsApp()" style="display:none;">Pricing</button>
+    <button id="pricingBtn" onclick="sendToWhatsApp()" style="display:none;">Get Pricing</button>
   </div>
 </section>
 
@@ -138,38 +137,42 @@ nav a:hover { transform:scale(1.2); color:#FFA500; }
   <p>📞 <strong>Call us:</strong> 07049955504</p>
 </section>
 
-<a class="whatsapp-rect" href="https://wa.me/2347059640476" target="_blank">WhatsApp</a>
+<!-- WhatsApp circle icon button -->
+<a class="whatsapp-circle" href="https://wa.me/2347059640476" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
 
 <script>
+// Hamburger menu toggle
 function toggleMenu(){document.getElementById('nav-menu').classList.toggle('show');}
 
+// Appliance variables
 let lastKVA=0, backupHours=0, future=false;
 
-function calculateLoad(){
-  const fans=Number(document.getElementById("fans").value);
-  const ac1=Number(document.getElementById("ac1").value);
-  const ac15=Number(document.getElementById("ac15").value);
-  const ac2=Number(document.getElementById("ac2").value);
-  const lights=Number(document.getElementById("lights").value);
-  const phones=Number(document.getElementById("phones").value);
-  const laptops=Number(document.getElementById("laptops").value);
-  const refrigerator=Number(document.getElementById("refrigerator").value);
-  const freezer=Number(document.getElementById("freezer").value);
-  const pump=Number(document.getElementById("pump").value);
-  const iron=Number(document.getElementById("iron").value);
-  const heater=Number(document.getElementById("heater").value);
+// Watt values
+const applianceWatts = {
+  fans:75, ac1:750, ac15:1100, ac2:1500, lights:20, phones:10,
+  laptops:65, refrigerator:200, freezer:180, pump:500, iron:1000, heater:1500
+};
 
+// Live calculation function
+function calculateLoad(){
+  let totalWatts=0;
+  for(let id in applianceWatts){
+    const val=Number(document.getElementById(id).value);
+    totalWatts+=val*applianceWatts[id];
+  }
   backupHours=document.getElementById("hours").value;
   future=document.getElementById("future").checked;
-
-  const totalWatts=
-    fans*75 + ac1*750 + ac15*1100 + ac2*1500 + lights*20 + phones*10 +
-    laptops*65 + refrigerator*200 + freezer*180 + pump*500 + iron*1000 + heater*1500;
-
   lastKVA=(totalWatts/1000).toFixed(2);
   document.getElementById("result").innerHTML=`Estimated Load: <strong>${lastKVA} kVA</strong>`;
   document.getElementById("pricingBtn").style.display="block";
 }
+
+// Attach live updates
+for(let id in applianceWatts){
+  document.getElementById(id).addEventListener('input', calculateLoad);
+}
+document.getElementById("hours").addEventListener('input', calculateLoad);
+document.getElementById("future").addEventListener('change', calculateLoad);
 
 function sendToWhatsApp(){
   const message=`Hi, I need a solar system with:\n\nLoad: ${lastKVA} kVA\nBackup Hours: ${backupHours}\nFuture Expansion: ${future?"Yes":"No"}`;
@@ -190,7 +193,7 @@ window.addEventListener('load',()=>{
   animateImage();
 });
 window.addEventListener('scroll', animateImage);
-</script>
 
+</script>
 </body>
 </html>
