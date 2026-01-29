@@ -58,8 +58,8 @@ nav a:hover { transform:scale(1.2); color:#FFA500; }
 .whatsapp-circle { position:fixed; bottom:25px; right:25px; background:#25D366; color:white; width:60px; height:60px; border-radius:50%; display:flex; justify-content:center; align-items:center; font-size:30px; box-shadow:0 5px 15px rgba(0,0,0,0.3); transition: transform 0.3s, background 0.5s; z-index:100; }
 .whatsapp-circle:hover { transform:scale(1.2); background:#1EBEA5; }
 
-/* Big bottom image */
-.bottom-image { display:flex; justify-content:center; margin-top:30px; overflow:hidden; }
+/* Big bottom image with parallax */
+.bottom-image { display:flex; justify-content:center; margin-top:30px; overflow:hidden; perspective:1000px; }
 .bottom-image img {
   width:95%;
   max-width:1600px;
@@ -68,15 +68,14 @@ nav a:hover { transform:scale(1.2); color:#FFA500; }
   border:4px solid #FFD700;
   box-shadow:0 10px 30px rgba(255,215,0,0.4);
   opacity:0;
-  transform:translateY(50px) scale(0.95);
+  transform: translateY(50px) scale(0.95);
   transition:opacity 1.2s ease-out, transform 1.2s ease-out, box-shadow 0.5s;
 }
-.bottom-image img.show { opacity:1; transform:translateY(0) scale(1); }
+.bottom-image img.show { opacity:1; }
 .bottom-image img:hover { box-shadow: 0 15px 40px rgba(255,215,0,0.6), 0 0 50px rgba(255,215,0,0.3); }
 
 .section { padding:50px 20px; text-align:center; }
 .dark { background:#000; }
-
 </style>
 </head>
 <body>
@@ -137,7 +136,6 @@ nav a:hover { transform:scale(1.2); color:#FFA500; }
   <p>📞 <strong>Call us:</strong> 07049955504</p>
 </section>
 
-<!-- WhatsApp circle icon button -->
 <a class="whatsapp-circle" href="https://wa.me/2347059640476" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
 
 <script>
@@ -153,7 +151,7 @@ const applianceWatts = {
   laptops:65, refrigerator:200, freezer:180, pump:500, iron:1000, heater:1500
 };
 
-// Live calculation function
+// Live calculation
 function calculateLoad(){
   let totalWatts=0;
   for(let id in applianceWatts){
@@ -174,26 +172,28 @@ for(let id in applianceWatts){
 document.getElementById("hours").addEventListener('input', calculateLoad);
 document.getElementById("future").addEventListener('change', calculateLoad);
 
+// WhatsApp function
 function sendToWhatsApp(){
   const message=`Hi, I need a solar system with:\n\nLoad: ${lastKVA} kVA\nBackup Hours: ${backupHours}\nFuture Expansion: ${future?"Yes":"No"}`;
   const url="https://wa.me/2347059640476?text="+encodeURIComponent(message);
   window.open(url,"_blank");
 }
 
-// Animate bottom image on scroll
+// Animate bottom image with parallax
 function animateImage() {
   const img=document.querySelector('.bottom-image img');
   const rect=img.getBoundingClientRect();
   if(rect.top < window.innerHeight - 100){ img.classList.add('show'); }
+  const offset=rect.top - window.innerHeight/2;
+  img.style.transform=`translateY(${offset*0.15}px) scale(1)`;
 }
 
-// Animate hero overlay on load
+// Animate hero overlay
 window.addEventListener('load',()=>{
   document.getElementById('homeOverlay').classList.add('show');
   animateImage();
 });
 window.addEventListener('scroll', animateImage);
-
 </script>
 </body>
 </html>
