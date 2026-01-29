@@ -1,63 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solar Calculator</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <style>
-    * { box-sizing: border-box; margin:0; font-family: 'Segoe UI', Tahoma, sans-serif; }
-    body { background:#111; color:#eee; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solar Calculator</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-    /* Header */
-    header { background:#000; color:#FFD700; padding:15px 30px; display:flex; justify-content:space-between; align-items:center; font-size:24px; font-weight:bold; position:relative; z-index:10; }
-    header .logo { display:flex; align-items:center; gap:10px; }
+<style>
+* { box-sizing: border-box; margin:0; font-family: 'Segoe UI', Tahoma, sans-serif; }
+body { background:#111; color:#eee; }
 
-    nav { display:flex; gap:20px; }
-    nav a { color:#FFD700; text-decoration:none; font-size:24px; display:flex; align-items:center; justify-content:center; padding:8px; border-radius:6px; transition: transform 0.3s, color 0.3s; }
-    nav a:hover { transform:scale(1.2); color:#FFA500; }
+/* Header */
+header { background:#000; color:#FFD700; padding:15px 30px; display:flex; justify-content:space-between; align-items:center; font-size:24px; font-weight:bold; position:relative; z-index:10; }
+header .logo { display:flex; align-items:center; gap:10px; }
 
-    .hamburger { display:none; flex-direction:column; cursor:pointer; gap:4px; }
-    .hamburger div { width:25px; height:3px; background:#FFD700; border-radius:2px; }
+nav { display:flex; gap:20px; }
+nav a { color:#FFD700; text-decoration:none; font-size:24px; display:flex; align-items:center; justify-content:center; padding:8px; border-radius:6px; transition: transform 0.3s, color 0.3s; }
+nav a:hover { transform:scale(1.2); color:#FFA500; }
 
-    @media(max-width:768px){
-      nav { display:none; position:absolute; top:60px; right:0; background:#1a1a1a; flex-direction:column; width:150px; padding:10px; border-radius:8px; }
-      nav.show { display:flex; }
-      .hamburger { display:flex; }
-    }
+.hamburger { display:none; flex-direction:column; cursor:pointer; gap:4px; }
+.hamburger div { width:25px; height:3px; background:#FFD700; border-radius:2px; }
 
-    /* Home Video Section */
-    .home-video { position:relative; height:80vh; overflow:hidden; }
-    .bg-video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1; }
-    .home-overlay { position:relative; z-index:2; width:100%; height:100%; background:rgba(0,0,0,0.4); display:flex; justify-content:center; align-items:center; text-align:center; padding:20px; flex-direction:column; color:#FFD700; }
-    .home-overlay h1 { font-size:32px; margin-bottom:25px; font-weight:bold; }
-    .cta-btn { background:linear-gradient(45deg,#FFD700,#FFA500); color:#000; padding:12px 28px; border-radius:50px; font-weight:bold; text-decoration:none; font-size:18px; transition:transform 0.3s; }
-    .cta-btn:hover { transform: scale(1.05); }
+@media(max-width:768px){
+  nav { display:none; position:absolute; top:60px; right:0; background:#1a1a1a; flex-direction:column; width:150px; padding:10px; border-radius:8px; }
+  nav.show { display:flex; }
+  .hamburger { display:flex; }
+}
 
-    /* Calculator Section */
-    .calculator { max-width:450px; margin:auto; text-align:left; }
-    .input-card { background:#1a1a1a; border-left:5px solid #FFD700; padding:12px; margin-top:15px; border-radius:8px; }
-    .input-card label { display:block; color:#FFD700; font-weight:bold; margin-bottom:5px; }
-    .input-card input { width:100%; padding:8px; border-radius:5px; border:none; background:#000; color:#fff; }
-    .input-card input::placeholder { color:black; font-weight:bold; }
-    .checkbox-container { display:flex; align-items:center; margin-top:15px; gap:10px; white-space:nowrap; }
-    .checkbox-container input[type="checkbox"] { width:18px; height:18px; }
-    .checkbox-container label { cursor:pointer; font-weight:bold; }
-    .calculator button { width:100%; padding:15px; margin-top:20px; background:linear-gradient(45deg,#FFD700,#FFA500); border:none; font-weight:bold; cursor:pointer; border-radius:50px; font-size:16px; transition:transform 0.3s; }
-    .calculator button:hover { transform: scale(1.05); }
-    #result { margin-top:20px; font-size:20px; color:#FFD700; text-align:center; }
+/* Home Video Section */
+.home-video { position:relative; width:100%; height:100vh; overflow:hidden; }
+.bg-video { position:absolute; top:50%; left:50%; min-width:100%; min-height:100%; width:auto; height:auto; transform:translate(-50%,-50%); z-index:1; object-fit:cover; }
+.home-overlay { position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.35); display:flex; justify-content:center; align-items:center; text-align:center; padding:20px; flex-direction:column; color:#FFD700; z-index:2; }
+.home-overlay h1 { font-size:3rem; margin-bottom:25px; font-weight:bold; }
+.cta-btn { background:linear-gradient(45deg,#FFD700,#FFA500); color:#000; padding:15px 30px; border-radius:50px; font-weight:bold; font-size:1.2rem; text-decoration:none; transition: transform 0.3s; }
+.cta-btn:hover { transform: scale(1.05); }
 
-    /* WhatsApp Floating Button */
-    .whatsapp-rect { position:fixed; bottom:25px; right:25px; background:linear-gradient(45deg,#25D366,#1EBEA5); color:white; padding:12px 25px; border-radius:30px; font-size:18px; font-weight:bold; text-decoration:none; border:2px solid white; box-shadow:0 5px 15px rgba(0,0,0,0.3); transition: transform 0.3s, background 0.5s; }
-    .whatsapp-rect:hover { transform:scale(1.1); background:linear-gradient(45deg,#1EBEA5,#25D366); }
+@media(max-width:768px){
+  .home-overlay h1 { font-size:2rem; }
+  .cta-btn { font-size:1rem; padding:12px 25px; }
+}
 
-    /* Gallery */
-    .gallery { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:30px; }
-    .gallery img { width:200px; height:150px; object-fit:cover; border-radius:8px; border:2px solid #FFD700; }
+/* Calculator Section */
+.calculator { max-width:450px; margin:auto; text-align:left; }
+.input-card { background:#1a1a1a; border-left:5px solid #FFD700; padding:12px; margin-top:15px; border-radius:8px; }
+.input-card label { display:block; color:#FFD700; font-weight:bold; margin-bottom:5px; }
+.input-card input { width:100%; padding:8px; border-radius:5px; border:none; background:#000; color:#fff; }
+.input-card input::placeholder { color:black; font-weight:bold; }
+.checkbox-container { display:flex; align-items:center; margin-top:15px; gap:10px; white-space:nowrap; }
+.checkbox-container input[type="checkbox"] { width:18px; height:18px; }
+.checkbox-container label { cursor:pointer; font-weight:bold; }
+.calculator button { width:100%; padding:15px; margin-top:20px; background:linear-gradient(45deg,#FFD700,#FFA500); border:none; font-weight:bold; cursor:pointer; border-radius:50px; font-size:16px; transition:transform 0.3s; }
+.calculator button:hover { transform: scale(1.05); }
+#result { margin-top:20px; font-size:20px; color:#FFD700; text-align:center; }
 
-    .section { padding:50px 20px; text-align:center; }
-    .dark { background:#000; }
-  </style>
+/* WhatsApp Floating Button */
+.whatsapp-rect { position:fixed; bottom:25px; right:25px; background:linear-gradient(45deg,#25D366,#1EBEA5); color:white; padding:12px 25px; border-radius:30px; font-size:18px; font-weight:bold; text-decoration:none; border:2px solid white; box-shadow:0 5px 15px rgba(0,0,0,0.3); transition: transform 0.3s, background 0.5s; }
+.whatsapp-rect:hover { transform:scale(1.1); background:linear-gradient(45deg,#1EBEA5,#25D366); }
+
+/* Gallery */
+.gallery { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:30px; }
+.gallery img { width:200px; height:150px; object-fit:cover; border-radius:8px; border:2px solid #FFD700; }
+
+.section { padding:50px 20px; text-align:center; }
+.dark { background:#000; }
+
+</style>
 </head>
 <body>
 
@@ -118,34 +125,34 @@
 <a class="whatsapp-rect" href="https://wa.me/2347059640476" target="_blank">WhatsApp</a>
 
 <script>
-  function toggleMenu(){document.getElementById('nav-menu').classList.toggle('show');}
+function toggleMenu(){document.getElementById('nav-menu').classList.toggle('show');}
 
-  let lastKVA=0, backupHours=0, future=false;
+let lastKVA=0, backupHours=0, future=false;
 
-  function calculateLoad(){
-    const fans=Number(document.getElementById("fans").value);
-    const acs=Number(document.getElementById("acs").value);
-    const lights=Number(document.getElementById("lights").value);
-    const phones=Number(document.getElementById("phones").value);
-    const laptops=Number(document.getElementById("laptops").value);
-    const tv=Number(document.getElementById("tv").value);
-    const fridge=Number(document.getElementById("fridge").value);
+function calculateLoad(){
+  const fans=Number(document.getElementById("fans").value);
+  const acs=Number(document.getElementById("acs").value);
+  const lights=Number(document.getElementById("lights").value);
+  const phones=Number(document.getElementById("phones").value);
+  const laptops=Number(document.getElementById("laptops").value);
+  const tv=Number(document.getElementById("tv").value);
+  const fridge=Number(document.getElementById("fridge").value);
 
-    backupHours=document.getElementById("hours").value;
-    future=document.getElementById("future").checked;
+  backupHours=document.getElementById("hours").value;
+  future=document.getElementById("future").checked;
 
-    const totalWatts=fans*75 + acs*1500 + lights*20 + phones*10 + laptops*65 + tv*100 + fridge*200;
-    lastKVA=(totalWatts/1000).toFixed(2);
+  const totalWatts=fans*75 + acs*1500 + lights*20 + phones*10 + laptops*65 + tv*100 + fridge*200;
+  lastKVA=(totalWatts/1000).toFixed(2);
 
-    document.getElementById("result").innerHTML=`Estimated Load: <strong>${lastKVA} kVA</strong>`;
-    document.getElementById("pricingBtn").style.display="block";
-  }
+  document.getElementById("result").innerHTML=`Estimated Load: <strong>${lastKVA} kVA</strong>`;
+  document.getElementById("pricingBtn").style.display="block";
+}
 
-  function sendToWhatsApp(){
-    const message=`Hi, I need a solar system with:\n\nLoad: ${lastKVA} kVA\nBackup Hours: ${backupHours}\nFuture Expansion: ${future?"Yes":"No"}`;
-    const url="https://wa.me/2347059640476?text="+encodeURIComponent(message);
-    window.open(url,"_blank");
-  }
+function sendToWhatsApp(){
+  const message=`Hi, I need a solar system with:\n\nLoad: ${lastKVA} kVA\nBackup Hours: ${backupHours}\nFuture Expansion: ${future?"Yes":"No"}`;
+  const url="https://wa.me/2347059640476?text="+encodeURIComponent(message);
+  window.open(url,"_blank");
+}
 </script>
 
 </body>
