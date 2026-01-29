@@ -5,19 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Solar Calculator</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
 <style>
-* { box-sizing: border-box; margin:0; font-family: 'Times New Roman', Times, serif; scroll-behavior: smooth; }
-body { background:#111; color:#eee; }
+/* Base */
+* { box-sizing: border-box; margin:0; font-family:'Times New Roman', Times, serif; scroll-behavior:smooth; }
+body { background:#111; color:#eee; overflow-x:hidden; }
 
 /* Header */
-header { background:#000; color:#FFD700; padding:15px 30px; display:flex; justify-content:space-between; align-items:center; font-size:24px; font-weight:bold; position:fixed; top:0; left:0; width:100%; z-index:10; box-shadow:0 2px 10px rgba(0,0,0,0.5); }
+header { background:#000; color:#FFD700; padding:15px 30px; display:flex; justify-content:space-between; align-items:center; font-size:24px; font-weight:bold; position:fixed; top:0; left:0; width:100%; z-index:100; box-shadow:0 2px 10px rgba(0,0,0,0.5); }
 header .logo { display:flex; align-items:center; gap:10px; }
-
 nav { display:flex; gap:20px; }
 nav a { color:#FFD700; text-decoration:none; font-size:24px; display:flex; align-items:center; justify-content:center; padding:8px; border-radius:6px; transition: transform 0.3s, color 0.3s; }
 nav a:hover { transform:scale(1.2); color:#FFA500; }
-
 .hamburger { display:none; flex-direction:column; cursor:pointer; gap:4px; }
 .hamburger div { width:25px; height:3px; background:#FFD700; border-radius:2px; }
 
@@ -27,22 +25,18 @@ nav a:hover { transform:scale(1.2); color:#FFA500; }
   .hamburger { display:flex; }
 }
 
-/* Home Video Section */
+/* Hero Video Section */
 .home-video { position:relative; width:100%; height:100vh; overflow:hidden; }
-.bg-video { position:absolute; top:50%; left:50%; min-width:100%; min-height:100%; width:auto; height:auto; transform:translate(-50%,-50%); z-index:1; object-fit:cover; }
+.bg-video { position:absolute; top:50%; left:50%; min-width:100%; min-height:100%; width:auto; height:auto; transform:translate(-50%,-50%) scale(1); z-index:1; object-fit:cover; transition:transform 0.5s ease-out, filter 0.5s ease-out; }
 .home-overlay { position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.35); display:flex; justify-content:center; align-items:center; text-align:center; padding:20px; flex-direction:column; color:#FFD700; z-index:2; opacity:0; transform:translateY(30px); transition: opacity 1s ease-out, transform 1s ease-out; }
 .home-overlay.show { opacity:1; transform:translateY(0); }
-.home-overlay h1 { font-size:3rem; margin-bottom:25px; font-weight:bold; }
+.home-overlay h1 { font-size:3rem; margin-bottom:25px; font-weight:bold; text-shadow:2px 2px 5px black; }
 .cta-btn { background:linear-gradient(45deg,#FFD700,#FFA500); color:#000; padding:15px 30px; border-radius:50px; font-weight:bold; font-size:1.2rem; text-decoration:none; transition: transform 0.3s, box-shadow 0.3s; }
 .cta-btn:hover { transform: scale(1.05); box-shadow:0 0 20px #FFD700; }
+@media(max-width:768px){ .home-overlay h1{ font-size:2rem;} .cta-btn{ font-size:1rem; padding:12px 25px;} }
 
-@media(max-width:768px){
-  .home-overlay h1 { font-size:2rem; }
-  .cta-btn { font-size:1rem; padding:12px 25px; }
-}
-
-/* Calculator Section */
-.calculator { max-width:500px; margin:auto; text-align:left; }
+/* Calculator */
+.calculator { max-width:500px; margin:auto; text-align:left; padding-bottom:50px; }
 .input-card { background:#1a1a1a; border-left:5px solid #FFD700; padding:12px; margin-top:15px; border-radius:8px; }
 .input-card label { display:block; color:#FFD700; font-weight:bold; margin-bottom:5px; }
 .input-card input { width:100%; padding:8px; border-radius:5px; border:none; background:#000; color:#fff; }
@@ -54,28 +48,22 @@ nav a:hover { transform:scale(1.2); color:#FFA500; }
 .calculator button:hover { transform: scale(1.05); }
 #result { margin-top:20px; font-size:20px; color:#FFD700; text-align:center; }
 
-/* Floating WhatsApp icon button */
+/* Floating WhatsApp */
 .whatsapp-circle { position:fixed; bottom:25px; right:25px; background:#25D366; color:white; width:60px; height:60px; border-radius:50%; display:flex; justify-content:center; align-items:center; font-size:30px; box-shadow:0 5px 15px rgba(0,0,0,0.3); transition: transform 0.3s, background 0.5s; z-index:100; }
 .whatsapp-circle:hover { transform:scale(1.2); background:#1EBEA5; }
 
-/* Big bottom image with parallax */
+/* Bottom Image with parallax */
 .bottom-image { display:flex; justify-content:center; margin-top:30px; overflow:hidden; perspective:1000px; }
-.bottom-image img {
-  width:95%;
-  max-width:1600px;
-  height:auto;
-  border-radius:12px;
-  border:4px solid #FFD700;
-  box-shadow:0 10px 30px rgba(255,215,0,0.4);
-  opacity:0;
-  transform: translateY(50px) scale(0.95);
-  transition:opacity 1.2s ease-out, transform 1.2s ease-out, box-shadow 0.5s;
-}
+.bottom-image img { width:95%; max-width:1600px; height:auto; border-radius:12px; border:4px solid #FFD700; box-shadow:0 10px 30px rgba(255,215,0,0.4); opacity:0; transform: translateY(50px) scale(0.95); transition:opacity 1.2s ease-out, transform 1.2s ease-out, box-shadow 0.5s; }
 .bottom-image img.show { opacity:1; }
-.bottom-image img:hover { box-shadow: 0 15px 40px rgba(255,215,0,0.6), 0 0 50px rgba(255,215,0,0.3); }
+.bottom-image img:hover { box-shadow:0 15px 40px rgba(255,215,0,0.6),0 0 50px rgba(255,215,0,0.3); }
 
+/* Sections */
 .section { padding:50px 20px; text-align:center; }
 .dark { background:#000; }
+
+/* Sticky mini load panel */
+#stickyLoad { position:fixed; top:70px; right:20px; background:rgba(0,0,0,0.8); padding:15px 20px; border-radius:12px; font-size:18px; color:#FFD700; display:none; z-index:90; box-shadow:0 5px 20px rgba(0,0,0,0.5); }
 </style>
 </head>
 <body>
@@ -89,6 +77,8 @@ nav a:hover { transform:scale(1.2); color:#FFA500; }
     <a href="#about" title="About"><i class="fa-solid fa-circle-info"></i></a>
   </nav>
 </header>
+
+<div id="stickyLoad">Estimated Load: <strong>0 kVA</strong></div>
 
 <section id="home" class="home-video section">
   <video autoplay muted loop playsinline class="bg-video">
@@ -105,11 +95,9 @@ nav a:hover { transform:scale(1.2); color:#FFA500; }
   <h2>Solar Load Calculator</h2>
   <div class="calculator">
     <div class="input-card"><label>Fans</label><input type="number" id="fans" placeholder="0"></div>
-    
     <div class="input-card"><label>Air Conditioner 1hp</label><input type="number" id="ac1" placeholder="0"></div>
     <div class="input-card"><label>Air Conditioner 1.5hp</label><input type="number" id="ac15" placeholder="0"></div>
     <div class="input-card"><label>Air Conditioner 2hp</label><input type="number" id="ac2" placeholder="0"></div>
-    
     <div class="input-card"><label>Lights</label><input type="number" id="lights" placeholder="0"></div>
     <div class="input-card"><label>Phones</label><input type="number" id="phones" placeholder="0"></div>
     <div class="input-card"><label>Laptops</label><input type="number" id="laptops" placeholder="0"></div>
@@ -118,7 +106,6 @@ nav a:hover { transform:scale(1.2); color:#FFA500; }
     <div class="input-card"><label>Water Pump</label><input type="number" id="pump" placeholder="0"></div>
     <div class="input-card"><label>Iron</label><input type="number" id="iron" placeholder="0"></div>
     <div class="input-card"><label>Water Heater</label><input type="number" id="heater" placeholder="0"></div>
-    
     <div class="input-card"><label>Backup Hours</label><input type="number" id="hours" placeholder="0"></div>
     <div class="checkbox-container"><input type="checkbox" id="future"><label for="future">Future Expansion</label></div>
     <div id="result"></div>
@@ -142,58 +129,65 @@ nav a:hover { transform:scale(1.2); color:#FFA500; }
 // Hamburger menu toggle
 function toggleMenu(){document.getElementById('nav-menu').classList.toggle('show');}
 
-// Appliance variables
+// Appliance watt values
 let lastKVA=0, backupHours=0, future=false;
+const applianceWatts={fans:75, ac1:750, ac15:1100, ac2:1500, lights:20, phones:10, laptops:65, refrigerator:200, freezer:180, pump:500, iron:1000, heater:1500};
 
-// Watt values
-const applianceWatts = {
-  fans:75, ac1:750, ac15:1100, ac2:1500, lights:20, phones:10,
-  laptops:65, refrigerator:200, freezer:180, pump:500, iron:1000, heater:1500
-};
-
-// Live calculation
+// Calculator function
 function calculateLoad(){
-  let totalWatts=0;
+  let total=0;
   for(let id in applianceWatts){
     const val=Number(document.getElementById(id).value);
-    totalWatts+=val*applianceWatts[id];
+    total+=val*applianceWatts[id];
   }
   backupHours=document.getElementById("hours").value;
   future=document.getElementById("future").checked;
-  lastKVA=(totalWatts/1000).toFixed(2);
+  lastKVA=(total/1000).toFixed(2);
   document.getElementById("result").innerHTML=`Estimated Load: <strong>${lastKVA} kVA</strong>`;
   document.getElementById("pricingBtn").style.display="block";
+  document.getElementById("stickyLoad").style.display="block";
+  document.querySelector('#stickyLoad strong').textContent=`${lastKVA} kVA`;
 }
 
 // Attach live updates
-for(let id in applianceWatts){
-  document.getElementById(id).addEventListener('input', calculateLoad);
-}
-document.getElementById("hours").addEventListener('input', calculateLoad);
-document.getElementById("future").addEventListener('change', calculateLoad);
+for(let id in applianceWatts){document.getElementById(id).addEventListener('input',calculateLoad);}
+document.getElementById("hours").addEventListener('input',calculateLoad);
+document.getElementById("future").addEventListener('change',calculateLoad);
 
-// WhatsApp function
+// WhatsApp
 function sendToWhatsApp(){
-  const message=`Hi, I need a solar system with:\n\nLoad: ${lastKVA} kVA\nBackup Hours: ${backupHours}\nFuture Expansion: ${future?"Yes":"No"}`;
-  const url="https://wa.me/2347059640476?text="+encodeURIComponent(message);
-  window.open(url,"_blank");
+  const msg=`Hi, I need a solar system with:\n\nLoad: ${lastKVA} kVA\nBackup Hours: ${backupHours}\nFuture Expansion: ${future?"Yes":"No"}`;
+  window.open("https://wa.me/2347059640476?text="+encodeURIComponent(msg),"_blank");
 }
 
-// Animate bottom image with parallax
-function animateImage() {
+// Hero video scroll effect
+function animateHeroVideo(){
+  const video=document.querySelector('.bg-video');
+  const scrollY=window.scrollY||window.pageYOffset;
+  const scale=1 + scrollY*0.0005;
+  const brightness=1 - scrollY*0.0005;
+  video.style.transform=`translate(-50%,-50%) scale(${scale})`;
+  video.style.filter=`brightness(${brightness})`;
+}
+
+// Bottom image parallax
+function animateBottomImage(){
   const img=document.querySelector('.bottom-image img');
   const rect=img.getBoundingClientRect();
-  if(rect.top < window.innerHeight - 100){ img.classList.add('show'); }
+  if(rect.top < window.innerHeight-100){ img.classList.add('show'); }
   const offset=rect.top - window.innerHeight/2;
   img.style.transform=`translateY(${offset*0.15}px) scale(1)`;
 }
 
-// Animate hero overlay
+// Hero overlay fade in
 window.addEventListener('load',()=>{
   document.getElementById('homeOverlay').classList.add('show');
-  animateImage();
+  animateBottomImage();
 });
-window.addEventListener('scroll', animateImage);
+window.addEventListener('scroll',()=>{
+  animateBottomImage();
+  animateHeroVideo();
+});
 </script>
 </body>
 </html>
