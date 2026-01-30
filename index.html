@@ -3,112 +3,173 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Solar Load Calculator</title>
-
+<title>Solar Calculator</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 <style>
-body{
-background:#0f0f0f;
-color:#fff;
-font-family:Arial,Helvetica,sans-serif;
-padding:20px
-}
-h2{text-align:center;color:#FFD700}
+*{box-sizing:border-box;margin:0;font-family:'Times New Roman',Times,serif}
+body{background:#111;color:#eee}
 
-.calculator{
-max-width:450px;
-margin:auto
-}
+/* Header */
+header{background:#000;color:#FFD700;padding:15px 30px;display:flex;justify-content:space-between;align-items:center;position:fixed;width:100%;top:0;z-index:100}
+nav a{color:#FFD700;text-decoration:none;font-size:22px;margin-left:15px}
+.section{padding:80px 20px;text-align:center}
+.dark{background:#000}
 
-.input-box{
-margin-bottom:12px
-}
+/* Calculator */
+.calculator{max-width:520px;margin:auto;text-align:left}
+.input-card{background:#1a1a1a;border-left:5px solid #FFD700;padding:12px;margin-top:12px;border-radius:8px}
+label{color:#FFD700;font-weight:bold}
+input{width:100%;padding:8px;border-radius:5px;border:none;background:#000;color:#fff}
 
-label{
-display:block;
-color:#FFD700;
-margin-bottom:5px;
-font-weight:bold
-}
-
-input{
-width:100%;
-padding:10px;
-border-radius:6px;
-border:none;
-background:#1a1a1a;
-color:#fff
-}
-
-button{
-width:100%;
-padding:15px;
-margin-top:15px;
-border:none;
-border-radius:50px;
+button{width:100%;padding:15px;margin-top:20px;
 background:linear-gradient(45deg,#FFD700,#FFA500);
-font-weight:bold;
-cursor:pointer
-}
+border:none;font-weight:bold;border-radius:50px;cursor:pointer}
 
-#result{
-margin-top:20px;
-font-size:18px;
-text-align:center;
-color:#FFD700
+#result{margin-top:20px;font-size:20px;color:#FFD700;text-align:center}
+
+/* Example cards */
+.examples{max-width:900px;margin:40px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.example-card{
+background:#1a1a1a;
+border:2px solid #FFD700;
+border-radius:12px;
+padding:20px;
+text-align:left
+}
+.example-card h3{color:#FFD700;margin-bottom:10px}
+.example-card p{font-size:15px;line-height:1.5}
+.example-card button{margin-top:10px}
+
+.whatsapp-circle{
+position:fixed;bottom:25px;right:25px;
+background:#25D366;color:white;
+width:60px;height:60px;border-radius:50%;
+display:flex;justify-content:center;align-items:center;
+font-size:30px
 }
 </style>
 </head>
 
 <body>
 
+<header>
+  <div><i class="fa-solid fa-sun"></i> Solar Calculator</div>
+  <nav>
+    <a href="#calculator">Calculator</a>
+    <a href="#examples">Examples</a>
+  </nav>
+</header>
+
+<section id="calculator" class="section dark">
 <h2>Solar Load Calculator</h2>
 
 <div class="calculator">
+  <div class="input-card"><label>Fans</label><input id="fans" type="number"></div>
+  <div class="input-card"><label>AC 1hp</label><input id="ac1" type="number"></div>
+  <div class="input-card"><label>AC 1.5hp</label><input id="ac15" type="number"></div>
+  <div class="input-card"><label>Lights</label><input id="lights" type="number"></div>
+  <div class="input-card"><label>TV</label><input id="tv" type="number"></div>
+  <div class="input-card"><label>Phones</label><input id="phones" type="number"></div>
+  <div class="input-card"><label>Laptops</label><input id="laptops" type="number"></div>
+  <div class="input-card"><label>Refrigerator</label><input id="refrigerator" type="number"></div>
+  <div class="input-card"><label>Freezer</label><input id="freezer" type="number"></div>
+  <div class="input-card"><label>Water Pump</label><input id="pump" type="number"></div>
+  <div class="input-card"><label>Backup Hours</label><input id="hours" type="number"></div>
 
-<div class="input-box"><label>Fans</label><input id="fans" type="number"></div>
-<div class="input-box"><label>Lights</label><input id="lights" type="number"></div>
-<div class="input-box"><label>TV</label><input id="tv" type="number"></div>
-<div class="input-box"><label>AC (1hp)</label><input id="ac1" type="number"></div>
-<div class="input-box"><label>AC (1.5hp)</label><input id="ac15" type="number"></div>
-<div class="input-box"><label>Refrigerator</label><input id="fridge" type="number"></div>
-<div class="input-box"><label>Freezer</label><input id="freezer" type="number"></div>
-<div class="input-box"><label>Water Pump</label><input id="pump" type="number"></div>
-<div class="input-box"><label>Laptops</label><input id="laptops" type="number"></div>
-<div class="input-box"><label>Phones</label><input id="phones" type="number"></div>
+  <div id="result"></div>
+  <button onclick="sendToWhatsApp()">Get Pricing</button>
+</div>
+</section>
 
-<div id="result"></div>
+<!-- PRACTICAL EXAMPLES -->
+<section id="examples" class="section">
+<h2>Practical Examples (Real Life)</h2>
 
-<button onclick="calculate()">Calculate Load</button>
+<div class="examples">
 
+<div class="example-card">
+<h3>🏠 1-Bedroom Apartment</h3>
+<p>
+• 3 Fans<br>
+• 6 Lights<br>
+• 1 TV<br>
+• 1 Refrigerator<br>
+• 3 Phones<br>
+• 1 Laptop
+</p>
+<button onclick="example1()">Use This Example</button>
 </div>
 
+<div class="example-card">
+<h3>🏡 2-Bedroom Apartment</h3>
+<p>
+• 5 Fans<br>
+• 10 Lights<br>
+• 2 TVs<br>
+• 1 AC (1.5hp)<br>
+• 1 Refrigerator<br>
+• 5 Phones<br>
+• 2 Laptops
+</p>
+<button onclick="example2()">Use This Example</button>
+</div>
+
+<div class="example-card">
+<h3>🏪 Small Shop / Office</h3>
+<p>
+• 4 Lights<br>
+• 2 Fans<br>
+• 1 TV<br>
+• 1 Laptop<br>
+• 1 Freezer
+</p>
+<button onclick="example3()">Use This Example</button>
+</div>
+
+</div>
+</section>
+
+<a class="whatsapp-circle" href="https://wa.me/2347059640476" target="_blank">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
+
 <script>
-const watts = {
-fans:75,
-lights:20,
-tv:150,
-ac1:750,
-ac15:1100,
-fridge:200,
-freezer:180,
-pump:500,
-laptops:65,
-phones:10
+const watts={
+fans:75,ac1:750,ac15:1100,lights:20,tv:150,
+phones:10,laptops:65,refrigerator:200,freezer:180,pump:500
 };
 
 function calculate(){
-let totalWatts = 0;
-
-for(let item in watts){
-let qty = Number(document.getElementById(item).value) || 0;
-totalWatts += qty * watts[item];
+let total=0;
+for(let k in watts){
+total+=(Number(document.getElementById(k).value)||0)*watts[k];
+}
+document.getElementById("result").innerHTML=
+`Estimated Load: <strong>${(total/1000).toFixed(2)} kVA</strong>`;
 }
 
-let kva = (totalWatts / 1000).toFixed(2);
+for(let k in watts){
+document.getElementById(k).addEventListener("input",calculate);
+}
 
-document.getElementById("result").innerHTML =
-`Total Load: <b>${totalWatts} W</b><br>
-Required Inverter Size: <b>${kva} kVA</b>`;
+function example1(){
+fans.value=3;lights.value=6;tv.value=1;refrigerator.value=1;
+phones.value=3;laptops.value=1;calculate();
+}
+
+function example2(){
+fans.value=5;lights.value=10;tv.value=2;ac15.value=1;
+refrigerator.value=1;phones.value=5;laptops.value=2;calculate();
+}
+
+function example3(){
+lights.value=4;fans.value=2;tv.value=1;laptops.value=1;
+freezer.value=1;calculate();
+}
+
+function sendToWhatsApp(){
+const msg=document.getElementById("result").innerText;
+window.open("https://wa.me/2347059640476?text="+encodeURIComponent(msg));
 }
 </script>
 
