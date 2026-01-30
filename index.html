@@ -99,6 +99,7 @@ nav a:hover { transform:scale(1.2); color:#FFA500; }
     <div class="input-card"><label>Air Conditioner 1.5hp</label><input type="number" id="ac15" placeholder="0"></div>
     <div class="input-card"><label>Air Conditioner 2hp</label><input type="number" id="ac2" placeholder="0"></div>
     <div class="input-card"><label>Lights</label><input type="number" id="lights" placeholder="0"></div>
+    <div class="input-card"><label>Television</label><input type="number" id="tv" placeholder="0"></div>
     <div class="input-card"><label>Phones</label><input type="number" id="phones" placeholder="0"></div>
     <div class="input-card"><label>Laptops</label><input type="number" id="laptops" placeholder="0"></div>
     <div class="input-card"><label>Refrigerator</label><input type="number" id="refrigerator" placeholder="0"></div>
@@ -129,9 +130,23 @@ nav a:hover { transform:scale(1.2); color:#FFA500; }
 // Hamburger menu toggle
 function toggleMenu(){document.getElementById('nav-menu').classList.toggle('show');}
 
-// Appliance watt values
+// Appliance watt values including Television
 let lastKVA=0, backupHours=0, future=false;
-const applianceWatts={fans:75, ac1:750, ac15:1100, ac2:1500, lights:20, phones:10, laptops:65, refrigerator:200, freezer:180, pump:500, iron:1000, heater:1500};
+const applianceWatts={
+  fans:75,
+  ac1:750,
+  ac15:1100,
+  ac2:1500,
+  lights:20,
+  tv:150,       // <-- Television added
+  phones:10,
+  laptops:65,
+  refrigerator:200,
+  freezer:180,
+  pump:500,
+  iron:1000,
+  heater:1500
+};
 
 // Calculator function
 function calculateLoad(){
