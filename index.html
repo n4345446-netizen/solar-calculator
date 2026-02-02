@@ -1,4 +1,6 @@
-<<head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Solar Calculator</title>
@@ -73,7 +75,7 @@ nav a:hover { transform:scale(1.2); color:#FFA500; }
   gtag('config', 'G-2RBYGDKE96');
 </script>
 
-</head>>
+</head>
 <body>
 
 <header>
@@ -146,7 +148,7 @@ const applianceWatts={
   ac15:1100,
   ac2:1500,
   lights:20,
-  tv:150,       // <-- Television added
+  tv:150,
   phones:10,
   laptops:65,
   refrigerator:200,
@@ -156,12 +158,18 @@ const applianceWatts={
   heater:1500
 };
 
-// Calculator function
+// Appliances that need surge factor
+const surgeDevices = ["ac1","ac15","ac2","refrigerator","freezer","pump","iron","heater","tv"];
+const surgeFactor = 1.25; // 25% surge
+
+// Calculator function with surge
 function calculateLoad(){
   let total=0;
   for(let id in applianceWatts){
     const val=Number(document.getElementById(id).value);
-    total+=val*applianceWatts[id];
+    let watt = applianceWatts[id];
+    if(surgeDevices.includes(id)){ watt *= surgeFactor; } // add surge
+    total += val * watt;
   }
   backupHours=document.getElementById("hours").value;
   future=document.getElementById("future").checked;
