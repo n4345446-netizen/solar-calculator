@@ -222,6 +222,14 @@ window.addEventListener('scroll',()=>{
   animateBottomImage();
   animateHeroVideo();
 });
+
+// Track WhatsApp clicks
+document.getElementById('whatsappBtn').addEventListener('click', function () {
+  gtag('event', 'whatsapp_click', {
+    event_category: 'Contact',
+    event_label: 'WhatsApp Button'
+  });
+});
 </script>
 </body>
 </html>
