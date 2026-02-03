@@ -223,13 +223,21 @@ window.addEventListener('scroll',()=>{
   animateHeroVideo();
 });
 
-// Track WhatsApp clicks
-document.getElementById('whatsappBtn').addEventListener('click', function () {
-  gtag('event', 'whatsapp_click', {
-    event_category: 'Contact',
-    event_label: 'WhatsApp Button'
-  });
+<script>
+// Wait for page to load completely
+window.addEventListener('DOMContentLoaded', function () {
+  var whatsappBtn = document.getElementById('whatsappBtn');
+  if (whatsappBtn) {
+    whatsappBtn.addEventListener('click', function () {
+      gtag('event', 'whatsapp_click', {
+        event_category: 'Contact',
+        event_label: 'WhatsApp Button'
+      });
+      console.log('WhatsApp click sent to GA'); // for testing
+    });
+  }
 });
+</script>
 </script>
 </body>
 </html>
