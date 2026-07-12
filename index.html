@@ -1,153 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JRD MEGA CONCEPTS LTD | Solar Calculator</title>
 
-<title>Solar Calculator</title>  
+    <link rel="stylesheet" href="style.css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />  
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-<style>
-*{box-sizing:border-box;margin:0;font-family:'Times New Roman',Times,serif}
-body{background:#111;color:#eee;overflow-x:hidden}
-
-/* Header */
-header{
-background:#000;color:#FFD700;padding:15px 30px;
-display:flex;justify-content:space-between;align-items:center;
-font-size:24px;font-weight:bold;position:fixed;top:0;left:0;width:100%;z-index:100
-}
-nav{display:flex;gap:20px}
-nav a{color:#FFD700;text-decoration:none;font-size:24px}
-.hamburger{display:none;cursor:pointer}
-@media(max-width:768px){
-nav{display:none;position:absolute;top:60px;right:0;background:#1a1a1a;flex-direction:column;padding:10px}
-nav.show{display:flex}
-.hamburger{display:block}
-}
-
-/* Hero */
-.home-video{height:100vh;position:relative}
-.bg-video{width:100%;height:100%;object-fit:cover}
-.home-overlay{
-position:absolute;top:0;left:0;width:100%;height:100%;
-background:rgba(0,0,0,.4);display:flex;flex-direction:column;
-justify-content:center;align-items:center;color:#FFD700;text-align:center
-}
-
-/* Calculator */
-.section{padding:100px 20px;text-align:center}
-.calculator{max-width:500px;margin:auto}
-.input-card{background:#1a1a1a;margin-top:12px;padding:12px;border-radius:8px}
-.input-card label{color:#FFD700;font-weight:bold}
-.input-card input{width:100%;padding:8px;background:#000;color:#fff;border:none}
-button{
-margin-top:20px;width:100%;padding:15px;
-background:linear-gradient(45deg,#FFD700,#FFA500);
-border:none;border-radius:30px;font-weight:bold
-}
-
-/* WhatsApp */
-.whatsapp-circle{
-position:fixed;bottom:25px;right:25px;background:#25D366;
-width:60px;height:60px;border-radius:50%;
-display:flex;align-items:center;justify-content:center;
-font-size:30px;color:white;z-index:200
-}
-</style>
-
-<!-- Google Analytics GA4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2RBYGDKE96"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-2RBYGDKE96');
-</script>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
+<!-- Navigation -->
+
 <header>
-<div>☀ Solar Calculator</div>
-<div class="hamburger" onclick="toggleMenu()">☰</div>
-<nav id="nav-menu">
-<a href="#home">🏠</a>
-<a href="#calculator">🧮</a>
-<a href="#about">ℹ</a>
-</nav>
+
+    <div class="logo">
+        JRD <span>MEGA</span> CONCEPTS
+    </div>
+
+    <nav>
+
+        <a href="#">Home</a>
+
+        <a href="#services">Services</a>
+
+        <a href="#calculator">Calculator</a>
+
+        <a href="#about">About</a>
+
+        <a href="#contact">Contact</a>
+
+    </nav>
+
 </header>
 
-<section id="home" class="home-video">
-<video autoplay muted loop class="bg-video">
-<source src="VID_20260128_171351.mp4" type="video/mp4">
+<!-- Hero -->
+
+<section class="hero">
+
+<video autoplay muted loop playsinline>
+
+<source src="video/solar.mp4" type="video/mp4">
+
 </video>
-<div class="home-overlay">
-<h1>Power Your Home with Solar</h1>
-<a href="#calculator">Calculate Load</a>
+
+<div class="overlay"></div>
+
+<div class="hero-content">
+
+<h1>Powering Homes & Businesses With Smart Solar Solutions</h1>
+
+<p>
+
+Professional Solar Installation • CCTV • Starlink • Smart Home Automation
+
+</p>
+
+<a href="#calculator" class="btn">
+
+Calculate My Solar
+
+</a>
+
+<a href="https://wa.me/2347059640476"
+
+class="btn2">
+
+<i class="fab fa-whatsapp"></i>
+
+Request Quote
+
+</a>
+
 </div>
+
 </section>
 
-<section id="calculator" class="section">
+<!-- Services -->
+
+<section id="services">
+
+<h2>Our Services</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<i class="fas fa-solar-panel"></i>
+
+<h3>Solar Installation</h3>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-video"></i>
+
+<h3>CCTV Installation</h3>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-satellite-dish"></i>
+
+<h3>Starlink</h3>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-house"></i>
+
+<h3>Smart Home</h3>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-lock"></i>
+
+<h3>Access Control</h3>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-tools"></i>
+
+<h3>Maintenance</h3>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Calculator -->
+
+<section id="calculator">
+
 <h2>Solar Load Calculator</h2>
 
 <div class="calculator">
-<div class="input-card"><label>Fans</label><input id="fans" type="number" value="0"></div>
-<div class="input-card"><label>AC 1hp</label><input id="ac1" type="number" value="0"></div>
-<div class="input-card"><label>Lights</label><input id="lights" type="number" value="0"></div>
-<div class="input-card"><label>TV</label><input id="tv" type="number" value="0"></div>
-<div class="input-card"><label>Backup Hours</label><input id="hours" type="number" value="0"></div>
+
+<input type="number"
+
+id="power"
+
+placeholder="Total Load (Watts)">
+
+<input type="number"
+
+id="hours"
+
+placeholder="Hours Per Day">
+
+<button onclick="calculate()">
+
+Calculate
+
+</button>
 
 <div id="result"></div>
-<button id="pricingBtn" onclick="sendToWhatsApp()">Get Pricing</button>
+
 </div>
+
 </section>
 
-<section id="about" class="section">
-<h2>About</h2>
-<p>Professional solar solutions across Nigeria.</p>
+<!-- About -->
+
+<section id="about">
+
+<h2>About Us</h2>
+
+<p>
+
+JRD MEGA CONCEPTS LTD provides professional solar energy solutions, CCTV installation, Starlink services, smart home automation, and maintenance for residential and commercial clients across Nigeria.
+
+</p>
+
 </section>
 
-<!-- WhatsApp Button -->
-<a id="whatsappBtn" class="whatsapp-circle"
-href="https://wa.me/2347059640476" target="_blank">
-<i class="fa-brands fa-whatsapp"></i>
+<!-- Contact -->
+
+<section id="contact">
+
+<h2>Contact Us</h2>
+
+<p>
+
+📞 0704 995 5504
+
+</p>
+
+<p>
+
+📱 0911 390 0004
+
+</p>
+
+<p>
+
+<i class="fab fa-whatsapp"></i>
+
+WhatsApp: 0705 964 0476
+
+</p>
+
+</section>
+
+<!-- Floating WhatsApp -->
+
+<a href="https://wa.me/2347059640476"
+
+class="whatsapp">
+
+<i class="fab fa-whatsapp"></i>
+
 </a>
 
-<script>
-// Menu
-function toggleMenu(){
-document.getElementById("nav-menu").classList.toggle("show");
-}
-
-// Calculator
-const watts={fans:75,ac1:750,lights:20,tv:150};
-function calc(){
-let total=0;
-for(let id in watts){
-total+=document.getElementById(id).value*watts[id];
-}
-let kva=(total/1000).toFixed(2);
-document.getElementById("result").innerHTML=`Estimated Load: <b>${kva} kVA</b>`;
-}
-document.querySelectorAll("input").forEach(i=>i.addEventListener("input",calc));
-
-// WhatsApp pricing
-function sendToWhatsApp(){
-let msg="Hi, I need a solar system quote.";
-window.open("https://wa.me/2347059640476?text="+encodeURIComponent(msg));
-}
-
-// GA4 WhatsApp tracking
-document.getElementById("whatsappBtn").addEventListener("click",function(){
-gtag('event','whatsapp_click',{
-event_category:'Contact',
-event_label:'Floating WhatsApp'
-});
-});
-</script>
+<script src="script.js"></script>
 
 </body>
+
 </html>
