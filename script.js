@@ -1,39 +1,58 @@
-let lastKVA = 0;
-let backupHours = 0;
-let future = false;
+function calculate() {
 
-function calculateLoad() {
-  // Get values, treat "o" or empty as 0
-  const fans = (Number(document.getElementById("fans").value) || 0) * 75;
-  const acs = (Number(document.getElementById("acs").value) || 0) * 1500;
-  const lights = (Number(document.getElementById("lights").value) || 0) * 20;
-  const phones = (Number(document.getElementById("phones").value) || 0) * 10;
-  const laptops = (Number(document.getElementById("laptops").value) || 0) * 65;
-  const tv = (Number(document.getElementById("tv").value) || 0) * 100;
-  const fridge = (Number(document.getElementById("fridge").value) || 0) * 200;
+    let load = parseFloat(document.getElementById("power").value);
+    let hours = parseFloat(document.getElementById("hours").value);
+    let result = document.getElementById("result");
 
-  backupHours = Number(document.getElementById("hours").value) || 0;
-  future = document.getElementById("future").checked;
+    if (isNaN(load) || isNaN(hours)) {
+        result.innerHTML = "<p style='color:red;'>Please enter valid values.</p>";
+        return;
+    }
 
-  const totalWatts = fans + acs + lights + phones + laptops + tv + fridge;
-  lastKVA = (totalWatts / 1000).toFixed(2);
+    // Daily Energy
+    let energy = load * hours;
+    let energyKwh = (energy / 1000).toFixed(2);
 
-  document.getElementById("result").innerHTML =
-    `Estimated Load: <strong>${lastKVA} kVA</strong>`;
+    // Inverter Recommendation
+    let inverter = "";
 
-  document.getElementById("pricingBtn").style.display = "block";
-}
+    if (load <= 1000) {
+        inverter = "1.5kVA Hybrid Inverter";
+    } else if (load <= 2500) {
+        inverter = "3.5kVA Hybrid Inverter";
+    } else if (load <= 4000) {
+        inverter = "5kVA Hybrid Inverter";
+    } else if (load <= 6500) {
+        inverter = "8kVA Hybrid Inverter";
+    } else if (load <= 8500) {
+        inverter = "10kVA Hybrid Inverter";
+    } else {
+        inverter = "15kVA Hybrid Inverter";
+    }
 
-function sendToWhatsApp() {
-  const message =
-    `Hi, I need a solar system with:\n\n` +
-    `Load: ${lastKVA} kVA\n` +
-    `Backup Hours: ${backupHours}\n` +
-    `Future Expansion: ${future ? "Yes" : "No"}`;
+    // Battery Recommendation
+    let battery = Math.ceil(energy / 5000);
 
-  const url =
-    "https://wa.me/2347059640476?text=" +
-    encodeURIComponent(message);
+    // Solar Panel Recommendation (585W)
+    let panels = Math.ceil(load / 585);
 
-  window.open(url, "_blank");
+    result.innerHTML = `
+        <h3>Calculation Result</h3>
+
+        <p><strong>Total Load:</strong> ${load} W</p>
+
+        <p><strong>Daily Energy:</strong> ${energy} Wh (${energyKwh} kWh)</p>
+
+        <p><strong>Recommended Inverter:</strong> ${inverter}</p>
+
+        <p><strong>Battery Suggestion:</strong> ${battery} × 5.12kWh Lithium Battery</p>
+
+        <p><strong>Solar Panels:</strong> ${panels} × 585W Panels</p>
+
+        <hr>
+
+        <p style="color:green;">
+        ✔ System recommendation generated successfully.
+        </p>
+    `;
 }
