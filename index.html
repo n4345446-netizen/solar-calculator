@@ -145,25 +145,82 @@ Request Quote
 
 <section id="calculator">
 
-<h2>Solar Load Calculator</h2>
+<h2>Smart Solar Calculator</h2>
 
 <div class="calculator">
 
-<input type="number"
+<div class="appliance">
 
-id="power"
+<label>💡 LED Bulbs (10W)</label>
 
-placeholder="Total Load (Watts)">
+<input type="number" id="bulb" value="0">
 
-<input type="number"
+</div>
 
+<div class="appliance">
+
+<label>🌀 Standing Fan (75W)</label>
+
+<input type="number" id="fan" value="0">
+
+</div>
+
+<div class="appliance">
+
+<label>📺 Television (120W)</label>
+
+<input type="number" id="tv" value="0">
+
+</div>
+
+<div class="appliance">
+
+<label>❄ Refrigerator (250W)</label>
+
+<input type="number" id="fridge" value="0">
+
+</div>
+
+<div class="appliance">
+
+<label>🧊 Freezer (350W)</label>
+
+<input type="number" id="freezer" value="0">
+
+</div>
+
+<div class="appliance">
+
+<label>💻 Laptop (90W)</label>
+
+<input type="number" id="laptop" value="0">
+
+</div>
+
+<div class="appliance">
+
+<label>📹 CCTV Cameras (25W)</label>
+
+<input type="number" id="cctv" value="0">
+
+</div>
+
+<div class="appliance">
+
+<label>🌐 WiFi Router (20W)</label>
+
+<input type="number" id="router" value="0">
+
+</div>
+
+<input
+type="number"
 id="hours"
-
-placeholder="Hours Per Day">
+placeholder="Average Hours of Use Per Day">
 
 <button onclick="calculate()">
 
-Calculate
+Calculate Solar System
 
 </button>
 
